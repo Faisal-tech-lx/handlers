@@ -1,0 +1,13 @@
+- hosts: localhost 
+  become: true
+  tasks:
+    - copy:
+        content: "hello world"
+        dest: /tmp/abc.txt
+      notify: Restart_http
+
+  handlers:
+    - name: Restart_http
+      service:
+        name: chronyd
+        state: restarted
