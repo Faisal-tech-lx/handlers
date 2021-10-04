@@ -2,12 +2,15 @@
   become: true
   tasks:
     - copy:
-        content: "hello world"
+        content: "hello world my"
         dest: /tmp/abc.txt
       notify: Restart_http
+      tags: 
+        [never,hello]
 
   handlers:
     - name: Restart_http
       service:
         name: chronyd
         state: restarted
+      
